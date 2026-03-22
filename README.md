@@ -1,102 +1,239 @@
-# 🧠 Projet d'Analyse de Sentiments Aspectuels avec LLM
+# 🤖 LLM Benchmark Studio - Analyse Comparative de Modèles de Langage
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" />
-  <img src="https://img.shields.io/badge/LangChain-LLM_Framework-green" />
-  <img src="https://img.shields.io/badge/OpenAI-API-orange" />
-  <img src="https://img.shields.io/badge/Status-Production-success" />
-  <img src="https://img.shields.io/badge/License-MIT-lightgrey" />
-</p>
+## 🎯 Sujet & Problématique
+
+**"Développement d'une plateforme comparative unifiée pour l'évaluation et l'analyse multi-plateforme de grands modèles de langage (LLMs) avec capacités multimodales et analyse sémantique avancée"**
+
+Ce projet ingénieux propose une architecture modulaire permettant d'interagir de manière uniforme avec trois écosystèmes majeurs de LLMs : **OpenAI (cloud)**, **Ollama (local)** et **Groq (ultra-rapide)**. L'approche se distingue par :
+- L'intégration de capacités **multimodales** (vision par IA, génération d'images)
+- Un système d'**analyse de sentiments aspectuels** par prompt engineering avancé
+- Une **visualisation token-by-token** pour comprendre le mécanisme de tokenisation
+- L'utilisation du **pattern Bridge** via LangChain pour abstraire les différences d'API
+
+## ✨ Fonctionnalités principales
+
+### 🎨 **Gestion de Tokenisation**
+- Visualisation détaillée de la segmentation textuelle en tokens
+- Compteur précis de tokens avec `tiktoken`
+- Support du tokenizer `o200k_base` pour GPT-4o
+
+### 🔄 **Multi-Plateforme LLM**
+| Plateforme | Modèle | Avantage |
+|------------|--------|----------|
+| **OpenAI** | GPT-4o, GPT-5.2 | Cloud, haute capacité |
+| **Ollama** | Llama 3.2 | Local, confidentialité |
+| **Groq** | GPT-OSS-120B | Ultra-rapide, open source |
+
+### 🖼️ **Capacités Multimodales**
+- **Vision par IA** : Analyse d'images encodées en base64
+- **Génération d'images** : Binding d'outils pour création d'images haute qualité
+- Interface unifiée texte/image dans les conversations
+
+### 📊 **Analyse de Sentiments Aspectuels**
+- Extraction multi-aspects (screen, keyboard, pad)
+- Classification polarité (positive/négative/neutre)
+- Sortie structurée en JSON pour exploitation automatisée
+- Gestion intelligente des aspects absents
+
+## 🗂️ Structure du projet
+📦 llm-benchmark-studio/
+┣ 📂 notebooks/
+┃ ┗ 📜 main.ipynb # Notebook principal d'exploration
+┣ 📂 src/
+┃ ┣ 📜 config.py # Configuration API (variables d'environnement)
+┃ ┣ 📜 tokenizer_utils.py # Utilitaires de tokenisation
+┃ ┣ 📜 sentiment_analyzer.py # Module d'analyse aspectuelle
+┃ ┗ 📜 multimodal_handler.py # Gestion des images et vision
+┣ 📂 assets/
+┃ ┗ 📜 img.png # Image de test pour la vision
+┣ 📜 .env.example # Template des variables d'environnement
+┣ 📜 requirements.txt # Dépendances Python
+┗ 📜 README.md # Ce fichier
 
 
-## 📋 Informations Générales
+## 🚀 Installation & Lancement
 
-| Élément        | Détail |
-|---------------|--------|
-| **Titre**     | Analyse de Sentiments Aspectuels sur Avis d'Ordinateurs Portables |
-| **Auteur**    | [Votre Nom] |
-| **Rôle**      | Ingénieur IA / Data Scientist |
-| **Date**      | Mars 2026 |
-| **Version**   | 1.0.0 |
-| **Statut**    | En production |
-| **Dépôt**     |  |
+### Prérequis
+- Python 3.10+
+- [Ollama](https://ollama.ai/) installé et en cours d'exécution (pour les modèles locaux)
+- Clés API pour OpenAI et Groq
 
----
+### Configuration
 
-## 🎯 Objectif du Projet
-
-  
-
-### 🔍 Le système doit :
-
-- ✔️ Identifier la présence des aspects cibles dans le texte  
-- ✔️ Attribuer une polarité (**positive / négative / neutre**) à chaque aspect  
-- ✔️ Gérer le **multilinguisme**  
-- ✔️ Fournir une sortie structurée au format **JSON**  
-- ✔️ Être testable avec différents fournisseurs de **LLM**
-
----
-
-## 🏗️ Architecture Technique
-
-### ⚙️ Stack Technologique
-
-| Composant        | Technologie                  | Version    |
-|------------------|-----------------------------|------------|
-| **Langage**      | Python                      | 3.10+      |
-| **Framework LLM**| LangChain                   | 0.1.0+     |
-| **Tokenization** | tiktoken                    | 0.5.0+     |
-| **Fournisseurs** | OpenAI / Ollama / Groq      | -          |
-| **Notebook**     | Jupyter                     | -          |
-| **Variables d'env** | python-dotenv           | 1.0.0+     |
-
----
-
-## 📁 Structure du Projet
-
+1. **Cloner le repository**
 ```bash
-Agentic-Project/
-├── .env                      # Variables d'environnement (clés API)
-├── .gitignore                # Fichiers ignorés par git
-├── .python-version           # Version Python utilisée
-├── img.png                   # Image test pour analyse vision
-├── main.py                   # Script principal
-├── pyproject.toml            # Configuration du projet
-├── README.md                 # Documentation
-├── tp1.ipynb                 # Notebook principal
-├── uv.lock                   # Lock file pour les dépendances
-└── config.py                 # Configuration centralisée
+git clone https://github.com/Ramadiaw12/agentic_project1
+cd llm-benchmark-studio
 
-⚙️ Configuration
-🔐 1. Variables d’environnement
+📚 Exemples d'utilisation
+1. Visualisation de tokenisation
+python
 
-Créer un fichier .env à partir de .env.example :
-OPENAI_API_KEY=sk-...
-GROQ_API_KEY=gsk_...
-ENVIRONMENT=development
-DEFAULT_MODEL=gpt-4o
-DEFAULT_TEMPERATURE=0
+from tokenizer_utils import tokens_count, visualize_tokens
 
-📦 2. Dépendances
-Package	Version	Description
-python-dotenv	>=1.0.0	Chargement des variables d'environnement
-tiktoken	>=0.5.0	Tokenizer OpenAI
-langchain	>=0.1.0	Framework LLM
-langchain-openai	>=0.0.2	Intégration OpenAI
-langchain-ollama	>=0.0.1	Intégration Ollama
-langchain-groq	>=0.0.1	Intégration Groq
-ipython	>=8.0.0	Environnement interactif
-jupyter	>=1.0.0	Notebooks
+prompt = "Vous êtes un assistant expert dans l'analyse"
+print(f"Nombre de tokens: {tokens_count(prompt)}")
+visualize_tokens(prompt)  # Affiche la segmentation token par token
 
-🚀 3. Installation
-📥 Cloner le dépôt
-git clone 
-cd analyse-sentiments-llm
+Résultat attendu :
+text
 
-⚡ Installation de uv
-Linux / macOS : curl -LsSf https://astral.sh/uv/install.sh | sh
-Windows : powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-Créer un environnement virtuel
-uv -m venv venv
-Linux / Mac : source venv/bin/activate
-Windows : venv\Scripts\activate
+Nombre de tokens: 8
+Vous| êtes| un| assistant| expert| dans| l'|analyse|
+
+2. Benchmark cross-plateforme
+python
+
+from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
+
+models = {
+    "OpenAI GPT-4o": ChatOpenAI(model="gpt-4o"),
+    "Ollama Llama 3.2": ChatOllama(model="llama3.2"),
+    "Groq GPT-OSS": ChatGroq(model="openai/gpt-oss-120b")
+}
+
+for name, model in models.items():
+    response = model.invoke("Qu'est-ce qu'un agent AI ?")
+    print(f"\n=== {name} ===\n{response.content[:200]}...")
+
+3. Analyse d'image par IA vision
+python
+
+from multimodal_handler import analyze_image, generate_image
+
+# Analyse d'une image existante
+description = analyze_image("assets/screenshot.png")
+print(f"L'IA voit : {description}")
+
+# Génération d'une image par IA
+generated_img = generate_image("Femme ingénieure informatique dans son bureau")
+display(generated_img)
+
+4. Analyse de sentiments aspectuels
+python
+
+from sentiment_analyzer import analyze_aspect_sentiment
+
+review = "J'ai beaucoup aimé l'écran! La souris n'est pas bonne et le clavier ma fih tchah"
+result = analyze_aspect_sentiment(review)
+
+print(f"Catégories: {result['category']}")
+print(f"Polarités: {result['polarity']}")
+
+Résultat attendu :
+json
+
+{
+  "category": ["screen", "keyboard", "pad"],
+  "polarity": ["positive", "negative", "neutral"]
+}
+
+🛠️ Architecture Technique
+Design Patterns implémentés
+
+    Bridge Pattern : LangChain agit comme une couche d'abstraction entre notre application et les différentes APIs LLM
+
+    Strategy Pattern : Tokenisation adaptative selon le modèle utilisé (tiktoken pour OpenAI, fallback pour autres)
+
+    Factory Pattern : Initialisation dynamique des clients LLM selon la plateforme choisie
+
+    Prompt Engineering :
+
+        System messages pour contrôler le comportement de l'assistant
+
+        Few-shot prompting dans l'analyse de sentiments
+
+        Structured output avec format JSON
+
+Flux de données
+text
+
+┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
+│   Prompt    │────▶│  Tokenizer   │────▶│   LLM Bridge    │
+│  Utilisateur│     │   (tiktoken) │     │   (LangChain)   │
+└─────────────┘     └──────────────┘     └────────┬────────┘
+                                                   │
+                    ┌──────────────────────────────┼──────────────────────────────┐
+                    ▼                              ▼                              ▼
+            ┌───────────────┐              ┌──────────────┐              ┌─────────────┐
+            │  OpenAI Cloud │              │ Ollama Local │              │  Groq Ultra │
+            │   (GPT-4o)    │              │  (Llama 3.2) │              │   (120B)    │
+            └───────┬───────┘              └──────┬───────┘              └──────┬──────┘
+                    │                              │                              │
+                    └──────────────────────────────┼──────────────────────────────┘
+                                                   ▼
+                                          ┌─────────────────┐
+                                          │  Post-processing│
+                                          │ • JSON parsing  │
+                                          │ • Image decode  │
+                                          │ • Visualisation │
+                                          └─────────────────┘
+
+📈 Résultats & Comparaisons
+Critère	GPT-4o (OpenAI)	Llama 3.2 (Ollama)	GPT-OSS (Groq)
+Latence	~2s	~3s (dépend hardware)	~0.5s
+Coût	Payant	Gratuit (local)	Payant (volume)
+Confidentialité	Données cloud	Données locales	Données cloud
+Multimodal	✅ Vision + Génération	❌	❌
+Tokenisation	tiktoken	Propriétaire	Propriétaire
+🚧 Axes d'amélioration envisagés
+
+    Système de cache intelligent : Mettre en cache les réponses fréquentes pour réduire coûts/latence
+
+    Benchmark automatisé : Métriques objectives (BLEU, ROUGE) pour évaluer qualité des réponses
+
+    Fine-tuning : Adapter un modèle local avec des données spécifiques au domaine
+
+    Interface Streamlit : Remplacer Jupyter par une application web interactive
+
+    Support multimodal étendu : Ajouter analyse vidéo et audio
+
+    Base de données vectorielle : RAG (Retrieval-Augmented Generation) pour contexte enrichi
+
+    Monitoring temps réel : Dashboard des coûts API et temps de réponse
+
+    Pipeline CI/CD : Tests automatisés des prompts et validation des sorties JSON
+
+📦 Dépendances principales
+python
+
+# requirements.txt
+langchain>=0.1.0
+langchain-openai>=0.1.0
+langchain-groq>=0.1.0
+langchain-ollama>=0.1.0
+tiktoken>=0.5.0
+python-dotenv>=1.0.0
+jupyter>=1.0.0
+ipython>=8.0.0
+pillow>=10.0.0  # Pour traitement d'images
+
+🔐 Sécurité & Bonnes pratiques
+
+    Les clés API sont stockées dans .env (ignoré par git)
+
+    Validation des entrées avant envoi aux modèles
+
+    Gestion des erreurs avec try/except pour résilience
+
+    Rate limiting implicite via la gestion des tokens
+
+📖 Références
+
+    LangChain Documentation
+
+    OpenAI API
+
+    Groq Documentation
+
+    Ollama Models
+
+    tiktoken - OpenAI Tokenizer
+
+👨‍💻 Auteur : DIAWANE Ramatoulaye
+📅 Date : Mars 2026
+🎓 Projet : Benchmark et Analyse de Modèles de Langage
+
+Ce projet démontre une maîtrise avancée des LLMs, de l'ingénierie des prompts, et de l'intégration multi-plateforme, avec une approche pragmatique et orientée résultats.
