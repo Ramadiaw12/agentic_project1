@@ -36,14 +36,10 @@ Ce projet ingénieux propose une architecture modulaire permettant d'interagir d
 - Gestion intelligente des aspects absents
 
 ## 🗂️ Structure du projet
-📦 llm-benchmark-studio/
+📦 agentic-project/
 ┣ 📂 notebooks/
-┃ ┗ 📜 main.ipynb # Notebook principal d'exploration
-┣ 📂 src/
-┃ ┣ 📜 config.py # Configuration API (variables d'environnement)
-┃ ┣ 📜 tokenizer_utils.py # Utilitaires de tokenisation
-┃ ┣ 📜 sentiment_analyzer.py # Module d'analyse aspectuelle
-┃ ┗ 📜 multimodal_handler.py # Gestion des images et vision
+┃ ┗ 📜 tp1.ipynb # Notebook principal d'exploration
+┣ 📂 pyproject.toml/
 ┣ 📂 assets/
 ┃ ┗ 📜 img.png # Image de test pour la vision
 ┣ 📜 .env.example # Template des variables d'environnement
